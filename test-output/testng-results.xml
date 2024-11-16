@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-16T02:48:23 IST" name="Default suite" finished-at="2024-11-16T02:48:36 IST" duration-ms="12687">
+  <suite started-at="2024-11-17T00:24:36 IST" name="Default suite" finished-at="2024-11-17T00:25:13 IST" duration-ms="36395">
     <groups>
     </groups>
-    <test started-at="2024-11-16T02:48:23 IST" name="Default test" finished-at="2024-11-16T02:48:36 IST" duration-ms="12687">
-      <class name="sameerakhtar.tests.StandAloneTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:sameerakhtar.tests.StandAloneTest@16eb3ea3]" started-at="2024-11-16T02:48:23 IST" name="setup" finished-at="2024-11-16T02:48:33 IST" duration-ms="9196" status="PASS">
+    <test started-at="2024-11-17T00:24:36 IST" name="Default test" finished-at="2024-11-17T00:25:13 IST" duration-ms="36395">
+      <class name="sameerakhtar.tests.HillClimbRacingTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@16eb3ea3]" started-at="2024-11-17T00:24:36 IST" name="setup" finished-at="2024-11-17T00:24:44 IST" duration-ms="7912" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="appiumTest()[pri:0, instance:sameerakhtar.tests.StandAloneTest@16eb3ea3]" started-at="2024-11-16T02:48:33 IST" name="appiumTest" finished-at="2024-11-16T02:48:36 IST" duration-ms="3226" status="PASS">
+        <test-method signature="HillClimbRacing_LauchGameplay()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@16eb3ea3]" started-at="2024-11-17T00:24:44 IST" name="HillClimbRacing_LauchGameplay" finished-at="2024-11-17T00:25:12 IST" duration-ms="27610" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- appiumTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:sameerakhtar.tests.StandAloneTest@16eb3ea3]" started-at="2024-11-16T02:48:36 IST" name="tearDown" finished-at="2024-11-16T02:48:36 IST" duration-ms="222" status="PASS">
+        </test-method> <!-- HillClimbRacing_LauchGameplay -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@16eb3ea3]" started-at="2024-11-17T00:25:12 IST" name="tearDown" finished-at="2024-11-17T00:25:13 IST" duration-ms="831" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- sameerakhtar.tests.StandAloneTest -->
+      </class> <!-- sameerakhtar.tests.HillClimbRacingTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

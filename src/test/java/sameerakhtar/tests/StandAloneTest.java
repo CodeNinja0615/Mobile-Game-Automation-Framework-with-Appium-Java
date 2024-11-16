@@ -11,7 +11,6 @@ import sameerakhtar.TestComponents.BaseTest;
 public class StandAloneTest extends BaseTest{
 	@Test
 	public void appiumTest() throws MalformedURLException, URISyntaxException {
-		driver.unlockDevice();
 		driver.activateApp("com.instagram.barcelona");
 		driver.findElement(AppiumBy.xpath("//android.view.View[@resource-id=\"barcelona_tab_profile\"]/android.view.View[2]")).click();
 		driver.terminateApp("com.instagram.barcelona");
