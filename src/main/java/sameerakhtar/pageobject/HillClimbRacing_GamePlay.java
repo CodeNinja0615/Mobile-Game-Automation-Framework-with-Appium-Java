@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.android.AndroidDriver;
 import sameerakhtar.AbstractComponents.AbstractComponent;
 
-public class GamePlay extends AbstractComponent {
+public class HillClimbRacing_GamePlay extends AbstractComponent {
 
 	AndroidDriver driver;
-	public GamePlay(AndroidDriver driver) {
+	public HillClimbRacing_GamePlay(AndroidDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -32,5 +32,9 @@ public class GamePlay extends AbstractComponent {
 		Point okBtn = VerifyScreenPatternAndGetCoordinates("HCR_ExitOKBtn", 10);
 		clickOnScreenWithCoordinates(okBtn.x, okBtn.y);
 		return VerifyScreenPattern("HCR_MainMenu", 35);
+	}
+	
+	public void quitGame(String packageName) {
+		quitGameWithPackageName(packageName);
 	}
 }

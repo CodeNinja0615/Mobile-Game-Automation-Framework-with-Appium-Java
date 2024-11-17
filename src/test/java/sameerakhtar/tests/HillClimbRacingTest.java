@@ -4,14 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import sameerakhtar.TestComponents.BaseTest;
-import sameerakhtar.pageobject.GamePlay;
-import sameerakhtar.pageobject.MainMenu;
+import sameerakhtar.pageobject.HillClimbRacing_GamePlay;
+import sameerakhtar.pageobject.HillClimbRacing_MainMenu;
 
 public class HillClimbRacingTest extends BaseTest {
  
 	@Test
 	public void HillClimbRacing_LauchGameplay() throws Exception {
-		MainMenu mainMenu = launchGame.launchGame();
+		HillClimbRacing_MainMenu mainMenu = launchGameWithPackageName.launchHillClimbRacing("com.fingersoft.hillclimb");
 		Boolean verifyMainMenu = mainMenu.verifyManiMenu();
 		Assert.assertTrue(verifyMainMenu);
 		Boolean verifySettings = mainMenu.naviagteToGameSettings();
@@ -19,12 +19,13 @@ public class HillClimbRacingTest extends BaseTest {
 		Boolean verifyMainMenuAgain = mainMenu.gotoMainMenu();
 		Assert.assertTrue(verifyMainMenuAgain);
 		
-		GamePlay gamePlay = mainMenu.navigateToGamePLay();
+		HillClimbRacing_GamePlay gamePlay = mainMenu.navigateToGamePLay();
 		Boolean verifyGamePlay = gamePlay.verifyGamePlay();
 		Assert.assertTrue(verifyGamePlay);
 		Boolean gamePlayPaused = gamePlay.pauseGamePlay();
 		Assert.assertTrue(gamePlayPaused);
 		Boolean verifyGamePlayQuit = gamePlay.quitGamePlay();
 		Assert.assertTrue(verifyGamePlayQuit);
+		gamePlay.quitGame("com.fingersoft.hillclimb");
 	}
 }

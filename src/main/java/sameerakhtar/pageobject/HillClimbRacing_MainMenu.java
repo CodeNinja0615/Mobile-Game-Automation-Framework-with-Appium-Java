@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.android.AndroidDriver;
 import sameerakhtar.AbstractComponents.AbstractComponent;
 
-public class MainMenu extends AbstractComponent {
+public class HillClimbRacing_MainMenu extends AbstractComponent {
 
 	AndroidDriver driver;
-	public MainMenu(AndroidDriver driver) {
+	public HillClimbRacing_MainMenu(AndroidDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -33,9 +33,9 @@ public class MainMenu extends AbstractComponent {
 		return VerifyScreenPattern("HCR_MainMenu", 20);
 	}
 	
-	public GamePlay navigateToGamePLay() throws Exception {
+	public HillClimbRacing_GamePlay navigateToGamePLay() throws Exception {
 		Point startBtn = VerifyScreenPatternAndGetCoordinates("HCR_StartBtn", 10);
 		clickOnScreenWithCoordinates(startBtn.x, startBtn.y);
-		return new GamePlay(driver);
+		return new HillClimbRacing_GamePlay(driver);
 	}
 }

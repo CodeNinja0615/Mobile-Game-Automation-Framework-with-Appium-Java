@@ -9,7 +9,7 @@ import io.appium.java_client.AppiumBy;
 import sameerakhtar.TestComponents.BaseTest;
 
 public class StandAloneTest extends BaseTest{
-	@Test
+	@Test(enabled=false)
 	public void appiumTest() throws MalformedURLException, URISyntaxException {
 		driver.activateApp("com.instagram.barcelona");
 		driver.findElement(AppiumBy.xpath("//android.view.View[@resource-id=\"barcelona_tab_profile\"]/android.view.View[2]")).click();
