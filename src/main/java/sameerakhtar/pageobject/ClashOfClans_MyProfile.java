@@ -33,6 +33,12 @@ public class ClashOfClans_MyProfile extends AbstractComponent{
 		return VerifyScreenPattern("COC_SearchedProfle", 30);
 	}
 	
+	public boolean cutProfileWindow() throws Exception {
+		Point crossProfile = VerifyScreenPatternAndGetCoordinates("COC_Cross", 30);
+		clickOnScreenWithCoordinates(crossProfile.x, crossProfile.y);
+		return VerifyScreenPattern("COC_GamePlay", 30);
+	}
+	
 	public void quitGame(String packageName) {
 		quitGameWithPackageName(packageName);
 	}

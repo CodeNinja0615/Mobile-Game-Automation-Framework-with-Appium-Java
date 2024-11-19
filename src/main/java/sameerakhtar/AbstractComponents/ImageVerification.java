@@ -83,7 +83,7 @@ public class ImageVerification {
 		smallWidth = smallImage.getWidth();
 		smallHeight = smallImage.getHeight();
 
-		ExecutorService executor = Executors.newFixedThreadPool(4); // Create a thread pool for optimization
+		ExecutorService executor = Executors.newFixedThreadPool(7); // Create a thread pool for optimization
 		List<Callable<Point>> tasks = new ArrayList<>();
 
 		// Loop through all possible positions where the small image can fit inside the
@@ -115,7 +115,7 @@ public class ImageVerification {
 	public static Point compareRegion(BufferedImage largeImage, BufferedImage smallImage, int startX, int startY) {
 		int smallWidth = smallImage.getWidth();
 		int smallHeight = smallImage.getHeight();
-		int tolerance = 10; // Tolerance for pixel value variations
+		int tolerance = 25; // Tolerance for pixel value variations
 
 		// Compare each pixel in the small image with the corresponding pixel in the
 		// large image

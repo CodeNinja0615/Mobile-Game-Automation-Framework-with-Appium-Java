@@ -12,7 +12,7 @@ public class ClashOfClans_GamePlay extends AbstractComponent{
 		this.driver = driver;
 	}
 	
-	public boolean GamePlay() throws Exception {
+	public boolean gamePlay() throws Exception {
 		return VerifyScreenPattern("COC_GamePlay", 30);
 	}
 	
@@ -20,6 +20,12 @@ public class ClashOfClans_GamePlay extends AbstractComponent{
 		Point profile = VerifyScreenPatternAndGetCoordinates("COC_ProfileIcon", 25);
 		clickOnScreenWithCoordinates(profile.x, profile.y);
 		return new ClashOfClans_MyProfile(driver);
+	}
+	
+	public ClashOfClans_Settings gotoSettings() throws Exception {
+		Point settings = VerifyScreenPatternAndGetCoordinates("COC_Settings", 25);
+		clickOnScreenWithCoordinates(settings.x, settings.y);
+		return new ClashOfClans_Settings(driver);
 	}
 	
 }
