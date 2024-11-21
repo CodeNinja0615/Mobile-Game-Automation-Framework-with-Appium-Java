@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 import javax.imageio.ImageIO;
 
@@ -113,18 +114,17 @@ public class AbstractComponent {
 		System.out.println(GREEN + "Clicked at x:" + x + ", y:" + y + RESET);
 	}
 	
+	public void clickAndHoldOnScreenWithCoordinates(int x, int y) {
+	    // Default time is 4 seconds
+	    clickAndHoldOnScreenWithCoordinates(x, y, 4);
+	}
+	
+	public void clickAndHoldOnScreenWithCoordinates(int x, int y, int time) {
+		new Actions(driver).moveToLocation(x, y).clickAndHold().pause(Duration.ofSeconds(time)).release().build().perform(); 
+		System.out.println(GREEN + "Clicked at x:" + x + ", y:" + y + RESET);
+	}
+	
 	public void sendKeyboardInput(CharSequence... input) {
-//        KeyInput keyboard = new KeyInput("keyboard");
-//        Sequence sequence = new Sequence(keyboard, 0);
-//
-//        // Add each character as a key press
-//        for (char ch : text.toCharArray()) {
-//            sequence.addAction(keyboard.createKeyDown(String.valueOf(ch)));
-//            sequence.addAction(keyboard.createKeyUp(String.valueOf(ch)));
-//        }
-//
-//        // Perform the sequence
-//        driver.perform(Collections.singletonList(sequence));
 		
 		new Actions(driver).pause(500).sendKeys(input).build().perform();
     }

@@ -18,10 +18,10 @@ public class HillClimbRacingTest extends BaseTest {
 		Assert.assertTrue(verifySettings);
 		Boolean verifyMainMenuAgain = mainMenu.gotoMainMenu();
 		Assert.assertTrue(verifyMainMenuAgain);
-		
 		HillClimbRacing_GamePlay gamePlay = mainMenu.navigateToGamePLay();
 		Boolean verifyGamePlay = gamePlay.verifyGamePlay();
 		Assert.assertTrue(verifyGamePlay);
+		gamePlay.playTheGame(25);
 		Boolean gamePlayPaused = gamePlay.pauseGamePlay();
 		Assert.assertTrue(gamePlayPaused);
 		Boolean verifyGamePlayQuit = gamePlay.quitGamePlay();
