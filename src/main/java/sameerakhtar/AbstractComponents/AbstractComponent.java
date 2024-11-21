@@ -32,16 +32,15 @@ public class AbstractComponent {
 		this.driver = driver;
 	}
 
-
 	public void lauchGameWithPackageName(String packageName) {
 		driver.terminateApp(packageName);
 		driver.activateApp(packageName);
 	}
-	
+
 	public void quitGameWithPackageName(String packageName) {
 		driver.terminateApp(packageName);
 	}
-	
+
 	public Point VerifyScreenPatternAndGetCoordinates(String imageName, int timeInSeconds) throws Exception {
 		long endTime = System.currentTimeMillis() + (timeInSeconds * 1000L);
 
@@ -70,36 +69,63 @@ public class AbstractComponent {
 		return false;
 	}
 
+	public boolean verifyOnScreenText(String expectedText, int x, int y, int width, int height, int timeInSeconds)
+			throws Exception { // ------For screen in transition or animated screen
+		String imageName = "OnScreenImage";
+		long endTime = System.currentTimeMillis() + (timeInSeconds * 1000L);
+		while (System.currentTimeMillis() < endTime) {
+			captureScreenshot(imageName, driver);
+			String extractedText = TesseractOCR.extractText(imageName, x, y, width, height);
+			if (extractedText.equalsIgnoreCase(expectedText)) {
+				return true;
+			}
+//			Thread.sleep(500);
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @return
+	 * @throws Exception
+	 */
+	public String extractOnScreenText(int x, int y, int width, int height) throws Exception { // -----For static screen
+		String imageName = "OnScreenImage";
+		captureScreenshot(imageName, driver);
+		String extractedText = TesseractOCR.extractText(imageName, x, y, width, height);
+		return extractedText;
+	}
+
 	public String captureScreenshot(String imageName, WebDriver driver) throws IOException {
-		// in Listeners
 //		TakesScreenshot ts = (TakesScreenshot) driver;
 //		File src = ts.getScreenshotAs(OutputType.FILE);
 //		File filePath = new File(System.getProperty("user.dir") + "/images/capturedImages/" + imageName + ".bmp");
 //		FileUtils.copyFile(src, filePath);
 //		return System.getProperty("user.dir") + "//reports//" + imageName + ".bmp";
 		// Capture the screenshot as a PNG file
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File src = ts.getScreenshotAs(OutputType.FILE);
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
 
-        // Read the PNG into a BufferedImage
-        BufferedImage pngImage = ImageIO.read(src);
+		// Read the PNG into a BufferedImage
+		BufferedImage pngImage = ImageIO.read(src);
 
-        // Convert the BufferedImage to a 24-bit BMP
-        BufferedImage bmpImage = new BufferedImage(
-                pngImage.getWidth(),
-                pngImage.getHeight(),
-                BufferedImage.TYPE_INT_RGB // Ensures 24-bit BMP (no alpha channel)
-        );
+		// Convert the BufferedImage to a 24-bit BMP
+		BufferedImage bmpImage = new BufferedImage(pngImage.getWidth(), pngImage.getHeight(), BufferedImage.TYPE_INT_RGB); // Ensures 24-bit BMP (no alpha channel)
 
-        // Draw the original PNG image onto the new BufferedImage
-        bmpImage.getGraphics().drawImage(pngImage, 0, 0, null);
+		// Draw the original PNG image onto the new BufferedImage
+		bmpImage.getGraphics().drawImage(pngImage, 0, 0, null);
 
-        // Save the BMP image to the specified location
-        String filePath = System.getProperty("user.dir") + "/images/capturedImages/" + imageName + ".bmp";
-        File output = new File(filePath);
-        ImageIO.write(bmpImage, "bmp", output);
+		// Save the BMP image to the specified location
+		String filePath = System.getProperty("user.dir") + "/images/capturedImages/" + imageName + ".bmp";
+		File output = new File(filePath);
+		ImageIO.write(bmpImage, "bmp", output);
 
-        return filePath;
+		return filePath;
 	}
 
 	public void clickOnScreenWithCoordinates(int x, int y) {
@@ -109,23 +135,24 @@ public class AbstractComponent {
 //		tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
 //		tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 //		driver.perform(Collections.singletonList(tap));
-		
+
 		new Actions(driver).moveToLocation(x, y).click().build().perform();
 		System.out.println(GREEN + "Clicked at x:" + x + ", y:" + y + RESET);
 	}
-	
+
 	public void clickAndHoldOnScreenWithCoordinates(int x, int y) {
-	    // Default time is 4 seconds
-	    clickAndHoldOnScreenWithCoordinates(x, y, 4);
+		// Default time is 4 seconds
+		clickAndHoldOnScreenWithCoordinates(x, y, 4);
 	}
-	
+
 	public void clickAndHoldOnScreenWithCoordinates(int x, int y, int time) {
-		new Actions(driver).moveToLocation(x, y).clickAndHold().pause(Duration.ofSeconds(time)).release().build().perform(); 
+		new Actions(driver).moveToLocation(x, y).clickAndHold().pause(Duration.ofSeconds(time)).release().build()
+				.perform();
 		System.out.println(GREEN + "Clicked at x:" + x + ", y:" + y + RESET);
 	}
-	
+
 	public void sendKeyboardInput(CharSequence... input) {
-		
+
 		new Actions(driver).pause(500).sendKeys(input).build().perform();
-    }
+	}
 }
