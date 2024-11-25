@@ -4,17 +4,18 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
-
 import javax.imageio.ImageIO;
-
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import com.google.common.collect.ImmutableMap;
+
 import io.appium.java_client.android.AndroidDriver;
 
+//--https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md
 public class AbstractComponent {
 	// ANSI escape code constants
 	public static final String RESET = "\u001B[0m"; // Resets to default color
@@ -115,7 +116,8 @@ public class AbstractComponent {
 		BufferedImage pngImage = ImageIO.read(src);
 
 		// Convert the BufferedImage to a 24-bit BMP
-		BufferedImage bmpImage = new BufferedImage(pngImage.getWidth(), pngImage.getHeight(), BufferedImage.TYPE_INT_RGB); // Ensures 24-bit BMP (no alpha channel)
+		BufferedImage bmpImage = new BufferedImage(pngImage.getWidth(), pngImage.getHeight(),
+				BufferedImage.TYPE_INT_RGB); // Ensures 24-bit BMP (no alpha channel)
 
 		// Draw the original PNG image onto the new BufferedImage
 		bmpImage.getGraphics().drawImage(pngImage, 0, 0, null);
@@ -129,6 +131,7 @@ public class AbstractComponent {
 	}
 
 	public void clickOnScreenWithCoordinates(int x, int y) {
+
 //		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
 //		Sequence tap = new Sequence(finger, 1);
 //		tap.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), x, y));
@@ -136,7 +139,10 @@ public class AbstractComponent {
 //		tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 //		driver.perform(Collections.singletonList(tap));
 
-		new Actions(driver).moveToLocation(x, y).click().build().perform();
+//		new Actions(driver).moveToLocation(x, y).click().build().perform();
+
+		// Java
+		driver.executeScript("mobile: clickGesture", ImmutableMap.of("x", x, "y", y));
 		System.out.println(GREEN + "Clicked at x:" + x + ", y:" + y + RESET);
 	}
 
@@ -146,10 +152,45 @@ public class AbstractComponent {
 	}
 
 	public void clickAndHoldOnScreenWithCoordinates(int x, int y, int time) {
-		new Actions(driver).moveToLocation(x, y).clickAndHold().pause(Duration.ofSeconds(time)).release().build()
-				.perform();
+//		new Actions(driver).moveToLocation(x, y).clickAndHold().pause(Duration.ofSeconds(time)).release().build()
+//				.perform();
+
+		((JavascriptExecutor) driver).executeScript("mobile: longClickGesture",
+				ImmutableMap.of("x", x, "y", y, "duration", time * 1000));
 		System.out.println(GREEN + "Clicked at x:" + x + ", y:" + y + RESET);
 	}
+
+	public void scrollInAreaWithCoordinates(int x, int y, int width, int height, String direction,
+			double scrollPercent) throws Exception {
+		((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left", x, "top", y,
+				"width", width, "height", height, "direction", direction, "percent", scrollPercent, "speed", 500));
+
+	}
+
+	public void lookForScreenContentAndScrollInAreaWithCoordinates(int x, int y, int width, int height, String direction,
+			double scrollPercent, String lookingFor) throws Exception {
+		boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
+				ImmutableMap.of("left", x, "top", y, "width", width, "height", height, "direction", direction,
+						"percent", scrollPercent, "speed", 500));
+		boolean verifyLookingFor = VerifyScreenPattern(lookingFor, 2);
+		int count = 0;
+		while (!verifyLookingFor && count <= 20) {
+			canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
+					ImmutableMap.of("left", x, "top", y, "width", width, "height", height, "direction", direction,
+							"percent", scrollPercent, "speed", 500));
+			verifyLookingFor = VerifyScreenPattern(lookingFor, 2);
+		}
+
+	}
+	
+	
+//	public void swipeInDirection() {
+//		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+//		    "left", 100, "top", 100, "width", 200, "height", 200,
+//		    "direction", "left",
+//		    "percent", 0.75
+//		));
+//	}
 
 	public void sendKeyboardInput(CharSequence... input) {
 

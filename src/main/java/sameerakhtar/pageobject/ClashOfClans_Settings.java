@@ -19,6 +19,7 @@ public class ClashOfClans_Settings extends AbstractComponent{
 	public boolean gotoMoreSettings() throws Exception {
 		Point moreSettings = VerifyScreenPatternAndGetCoordinates("COC_MoreSettings", 30);
 		clickOnScreenWithCoordinates(moreSettings.x, moreSettings.y);
+		lookForScreenContentAndScrollInAreaWithCoordinates(431, 151, 733, 457, "down", 0.5, "COC_CustomerSupportIcon");
 		return VerifyScreenPattern("COC_MoreSettingsPage", 30);
 	}
 }
