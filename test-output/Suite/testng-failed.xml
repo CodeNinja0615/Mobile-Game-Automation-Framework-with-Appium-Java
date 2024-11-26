@@ -10,13 +10,6 @@
           <include name="setup"/>
         </methods>
       </class> <!-- sameerakhtar.tests.HillClimbRacingTest -->
-      <class name="sameerakhtar.tests.ClashOfClansTest">
-        <methods>
-          <include name="tearDown"/>
-          <include name="ClashOfClans_LauchGameplay"/>
-          <include name="setup"/>
-        </methods>
-      </class> <!-- sameerakhtar.tests.ClashOfClansTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

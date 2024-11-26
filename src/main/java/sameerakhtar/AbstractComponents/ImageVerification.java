@@ -35,7 +35,7 @@ public class ImageVerification {
 		Point coordinates = findImageCoordinates(grayLargeImage, graySmallImage);
 		if (coordinates != null) {
 //			System.out.println("Small image found in the large image.");
-			System.out.println(GREEN + "Match found at coordinates:- x=" + coordinates.x + ", y=" + coordinates.y + RESET);
+			System.out.println(GREEN + imageName +" Match found at coordinates:- x=" + coordinates.x + ", y=" + coordinates.y + RESET);
 			return coordinates;
 		} else {
 			System.out.println(RED + imageName + " Image Match Not Found, retruning null Co-ordinates" + RESET);
@@ -56,7 +56,7 @@ public class ImageVerification {
 
 		Point coordinates = findImageCoordinates(grayLargeImage, graySmallImage);
 		if (coordinates != null) {
-			System.out.println(GREEN + "Image Match Found." + RESET);
+			System.out.println(GREEN + imageName + " Image Match Found." + RESET);
 			return true;
 		} else {
 			System.out.println(RED + imageName + " Image Match Not Found." + RESET);

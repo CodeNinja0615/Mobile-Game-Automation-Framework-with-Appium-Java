@@ -17,6 +17,9 @@ public class ClashOfClans_GamePlay extends AbstractComponent{
 	}
 	
 	public ClashOfClans_MyProfile gotoProfile() throws Exception {
+		zoomInAreaWithCoordinates(500, 200, 300, 200, 1.0);
+		swipeInDirectionInAreaWithCoordinates(500, 200, 300, 200, "left", 0.50);
+		zoomOutAreaWithCoordinates(500, 200, 300, 200, 0.50);
 		Point profile = VerifyScreenPatternAndGetCoordinates("COC_ProfileIcon", 25);
 		clickOnScreenWithCoordinates(profile.x, profile.y);
 		return new ClashOfClans_MyProfile(driver);

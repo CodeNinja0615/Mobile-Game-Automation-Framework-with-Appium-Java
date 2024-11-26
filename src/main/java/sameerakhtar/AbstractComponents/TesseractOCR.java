@@ -31,24 +31,36 @@ public class TesseractOCR {
         return tesseract.doOCR(croppedImage);
     }
 	
-	 public static void downloadTessdata() {
-	        try {
-	            String tessdataDir = System.getProperty("user.dir") + "/tessdata";
-	            File directory = new File(tessdataDir);
-	            if (!directory.exists()) {
-	                directory.mkdirs();
-	            }
+	public static void downloadTessdata() {
+	    try {
+	        String tessdataDir = System.getProperty("user.dir") + "/tessdata";
+	        File directory = new File(tessdataDir);
+	        if (!directory.exists()) {
+	            directory.mkdirs();
+	        }
 
-	            String[] languages = {"eng"}; // Add more languages as needed
-	            for (String lang : languages) {
+	        String[] languages = {"eng"}; // Add more languages as needed
+	        for (String lang : languages) {
+	            String traineddataFile = tessdataDir + "/" + lang + ".traineddata";
+	            File traineddata = new File(traineddataFile);
+
+	            if (traineddata.exists()) {
+	                System.out.println(lang + ".traineddata already present in tessdata.");
+	            } else {
 	                String url = "https://github.com/tesseract-ocr/tessdata/raw/main/" + lang + ".traineddata";
-	                downloadFile(url, tessdataDir + "/" + lang + ".traineddata");
+	                downloadFile(url, traineddataFile);
 	                System.out.println("Downloaded: " + lang + ".traineddata");
 	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
 	        }
+
+	        // Set the environment variable for Tesseract
+	        System.setProperty("TESSDATA_PREFIX", tessdataDir + "/");
+	    } catch (Exception e) {
+	        e.printStackTrace();
 	    }
+	}
+
+
 
 	    private static void downloadFile(String urlString, String destination) throws IOException, URISyntaxException {
 	        URI uri = new URI(urlString);

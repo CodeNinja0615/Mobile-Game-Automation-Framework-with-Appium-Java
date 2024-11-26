@@ -77,10 +77,14 @@ public class AbstractComponent {
 		while (System.currentTimeMillis() < endTime) {
 			captureScreenshot(imageName, driver);
 			String extractedText = TesseractOCR.extractText(imageName, x, y, width, height);
-			if (extractedText.equalsIgnoreCase(expectedText)) {
+			if (extractedText.toLowerCase().equalsIgnoreCase(expectedText.toLowerCase())) {
+				System.out.println(GREEN + "extracted text:- "+extractedText.toLowerCase()+"expected text:- "+expectedText.toLowerCase() + RESET);
+				System.out.println(GREEN + extractedText.toLowerCase().equalsIgnoreCase(expectedText.toLowerCase()) + RESET);
 				return true;
 			}
 //			Thread.sleep(500);
+			System.out.println(RED + "extracted text:- "+extractedText.toLowerCase()+"expected text:- "+expectedText.toLowerCase() + RESET);
+			System.out.println(RED + extractedText.toLowerCase().equalsIgnoreCase(expectedText.toLowerCase()) + RESET);
 		}
 		return false;
 	}
@@ -160,15 +164,15 @@ public class AbstractComponent {
 		System.out.println(GREEN + "Clicked at x:" + x + ", y:" + y + RESET);
 	}
 
-	public void scrollInAreaWithCoordinates(int x, int y, int width, int height, String direction,
-			double scrollPercent) throws Exception {
+	public void scrollInAreaWithCoordinates(int x, int y, int width, int height, String direction, double scrollPercent)
+			throws Exception {
 		((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left", x, "top", y,
 				"width", width, "height", height, "direction", direction, "percent", scrollPercent, "speed", 500));
 
 	}
 
-	public void lookForScreenContentAndScrollInAreaWithCoordinates(int x, int y, int width, int height, String direction,
-			double scrollPercent, String lookingFor) throws Exception {
+	public void lookForScreenContentAndScrollInAreaWithCoordinates(int x, int y, int width, int height,
+			String direction, double scrollPercent, String lookingFor) throws Exception {
 		boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
 				ImmutableMap.of("left", x, "top", y, "width", width, "height", height, "direction", direction,
 						"percent", scrollPercent, "speed", 500));
@@ -182,15 +186,22 @@ public class AbstractComponent {
 		}
 
 	}
-	
-	
-//	public void swipeInDirection() {
-//		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
-//		    "left", 100, "top", 100, "width", 200, "height", 200,
-//		    "direction", "left",
-//		    "percent", 0.75
-//		));
-//	}
+
+	public void swipeInDirectionInAreaWithCoordinates(int x, int y, int width, int height, String direction,
+			double swipePercent) {
+		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of("left", x, "top", y,
+				"width", width, "height", height, "direction", direction, "percent", swipePercent));
+	}
+
+	public void zoomInAreaWithCoordinates(int x, int y, int width, int height, double zoomInPercent) {
+		((JavascriptExecutor) driver).executeScript("mobile: pinchOpenGesture",
+				ImmutableMap.of("left", x, "top", y, "width", width, "height", height, "percent", zoomInPercent));
+	}
+
+	public void zoomOutAreaWithCoordinates(int x, int y, int width, int height, double zoomOutPercent) {
+		((JavascriptExecutor) driver).executeScript("mobile: pinchCloseGesture",
+				ImmutableMap.of("left", x, "top", y, "width", width, "height", height, "percent", zoomOutPercent));
+	}
 
 	public void sendKeyboardInput(CharSequence... input) {
 

@@ -30,6 +30,7 @@ public class ClashOfClans_MyProfile extends AbstractComponent{
 		Point searchPlayerID = VerifyScreenPatternAndGetCoordinates("COC_SearchPlayerID", 30);
 		clickOnScreenWithCoordinates(searchPlayerID.x, searchPlayerID.y);
 		sendKeyboardInput("Y2QCPVGC8", Keys.ENTER);
+//		return verifyOnScreenText("Y2QCPVGC8", 376, 214, 117, 22, 30);
 		return VerifyScreenPattern("COC_SearchedProfle", 30);
 	}
 	
