@@ -2,9 +2,11 @@ package sameerakhtar.pageobject;
 
 import java.awt.Point;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import sameerakhtar.AbstractComponents.AbstractComponent;
 
 public class HillClimbRacing_MainMenu extends AbstractComponent {
@@ -16,6 +18,9 @@ public class HillClimbRacing_MainMenu extends AbstractComponent {
 		PageFactory.initElements(driver, this);
 	}
 
+//	@AndroidFindBy (xpath="")
+//	WebElement name;
+	
 	public boolean verifyManiMenu() throws Exception {
 		return VerifyScreenPattern("HCR_MainMenu", 20);
 	}

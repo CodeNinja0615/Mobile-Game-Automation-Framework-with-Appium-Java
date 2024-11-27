@@ -4,7 +4,10 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
+import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -42,6 +45,18 @@ public class AbstractComponent {
 		driver.terminateApp(packageName);
 	}
 
+	public void deviceRotation() {
+		DeviceRotation rotate = new DeviceRotation(0, 0, 90);
+		driver.rotate(rotate);
+	}
+	
+	public void copyToClipboard(String text) {
+		driver.setClipboardText(text);
+	}
+	
+	public String getClipboardText(String text) {
+		return driver.getClipboardText();
+	}
 	public Point VerifyScreenPatternAndGetCoordinates(String imageName, int timeInSeconds) throws Exception {
 		long endTime = System.currentTimeMillis() + (timeInSeconds * 1000L);
 
