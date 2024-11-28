@@ -1,5 +1,6 @@
 package sameerakhtar.TestComponents;
 
+//----https://github.com/appium/appium-uiautomator2-driver/?tab=readme-ov-file
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,23 +31,40 @@ public class BaseTest {
 
 	public void configureAppium(String deviceName, String platformName, boolean setNoReset)
 			throws MalformedURLException, URISyntaxException {
-		service = new AppiumServiceBuilder()
-				.withAppiumJS(
-						new File("C://Users//HP//AppData//Roaming//npm//node_modules//appium//build//lib//main.js"))
-				.withIPAddress("127.0.0.1").usingPort(4723).build();
-		service.start();
-		UiAutomator2Options options = new UiAutomator2Options();
-		options.setDeviceName(deviceName);
-		options.setPlatformName(platformName);
-//		options.setApp("C:/Users/HP/Downloads/General-Store.apk");
-//		adb shell dumpsys window | findstr "mCurrentFocus"
-//		options.setAppPackage("com.instagram.barcelona");
-//		options.setAppActivity("com.instagram.barcelona.mainactivity.BarcelonaActivity");
-		options.setNoReset(setNoReset); // ----- set true else app will be reset on start
-//		options.setAppWaitForLaunch(true);
-		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.unlockDevice();
+
+		if (platformName.equalsIgnoreCase("Android")) {
+
+			String currentUser = System.getProperty("user.name");
+			service = new AppiumServiceBuilder()
+					.withAppiumJS(new File("C://Users//" + currentUser
+							+ "//AppData//Roaming//npm//node_modules//appium//build//lib//main.js"))
+					.withIPAddress("127.0.0.1").usingPort(4723).build();
+			service.start();
+			UiAutomator2Options options = new UiAutomator2Options();
+			options.setDeviceName(deviceName);
+			options.setPlatformName(platformName);
+			// -----------------------------------------------------------------------------------------------------------------------//
+//			options.setApp("C:/Users/HP/Downloads/General-Store.apk");
+//			adb shell dumpsys window | findstr "mCurrentFocus"
+//			options.setAppActivity("com.instagram.barcelona.mainactivity.BarcelonaActivity");
+//			options.setAppPackage("com.instagram.barcelona");
+			// -----------------------------------------------------------------------------------------------------------------------//
+			options.setNoReset(setNoReset); // ----- set true else app will be reset on start
+			options.setAppWaitForLaunch(true);
+			options.setGpsEnabled(true);
+			options.autoGrantPermissions();
+			driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+			driver.unlockDevice();
+		}
+		else if(platformName.equalsIgnoreCase("iOS")) {
+			//---iOS code here
+		}
+
+		else if(platformName.equalsIgnoreCase("windows")) {
+			//---windows code here
+		}
+
 	}
 
 	@BeforeMethod
@@ -59,9 +77,10 @@ public class BaseTest {
 				: prop.getProperty("deviceName");
 		String platformName = System.getProperty("platformName") != null ? System.getProperty("platformName")
 				: prop.getProperty("platformName");
-		
+
 		configureAppium(deviceName, platformName, true);
-		launchGameWithPackageName = new LaunchGameWithPackageName(driver); //----Providing driver to the first page object model class
+		launchGameWithPackageName = new LaunchGameWithPackageName(driver); // ----Providing driver to the first page
+																			// object model class
 	}
 
 	@AfterMethod

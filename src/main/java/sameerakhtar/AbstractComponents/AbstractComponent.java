@@ -104,16 +104,6 @@ public class AbstractComponent {
 		return false;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 * @return
-	 * @throws Exception
-	 */
 	public String extractOnScreenText(int x, int y, int width, int height) throws Exception { // -----For static screen
 		String imageName = "OnScreenImage";
 		captureScreenshot(imageName, driver);

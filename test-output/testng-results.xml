@@ -2,34 +2,34 @@
 <testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-27T02:18:55 IST" name="Suite" finished-at="2024-11-27T02:21:18 IST" duration-ms="143209">
+  <suite started-at="2024-11-29T04:16:31 IST" name="Suite" finished-at="2024-11-29T04:19:03 IST" duration-ms="151939">
     <groups>
     </groups>
-    <test started-at="2024-11-27T02:18:55 IST" name="Test" finished-at="2024-11-27T02:21:18 IST" duration-ms="143209">
+    <test started-at="2024-11-29T04:16:31 IST" name="Test" finished-at="2024-11-29T04:19:03 IST" duration-ms="151939">
       <class name="sameerakhtar.tests.ClashOfClansTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:sameerakhtar.tests.ClashOfClansTest@66982506]" started-at="2024-11-27T02:18:55 IST" name="setup" finished-at="2024-11-27T02:19:03 IST" duration-ms="7707" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:sameerakhtar.tests.ClashOfClansTest@66982506]" started-at="2024-11-29T04:16:32 IST" name="setup" finished-at="2024-11-29T04:16:41 IST" duration-ms="9393" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="ClashOfClans_LauchGameplay()[pri:0, instance:sameerakhtar.tests.ClashOfClansTest@66982506]" started-at="2024-11-27T02:19:03 IST" name="ClashOfClans_LauchGameplay" finished-at="2024-11-27T02:20:14 IST" duration-ms="71488" status="PASS">
+        <test-method signature="ClashOfClans_LauchGameplay()[pri:0, instance:sameerakhtar.tests.ClashOfClansTest@66982506]" started-at="2024-11-29T04:16:41 IST" name="ClashOfClans_LauchGameplay" finished-at="2024-11-29T04:17:55 IST" duration-ms="74344" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ClashOfClans_LauchGameplay -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:sameerakhtar.tests.ClashOfClansTest@66982506]" started-at="2024-11-27T02:20:14 IST" name="tearDown" finished-at="2024-11-27T02:20:15 IST" duration-ms="263" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:sameerakhtar.tests.ClashOfClansTest@66982506]" started-at="2024-11-29T04:17:55 IST" name="tearDown" finished-at="2024-11-29T04:17:56 IST" duration-ms="264" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- sameerakhtar.tests.ClashOfClansTest -->
       <class name="sameerakhtar.tests.HillClimbRacingTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@70cf32e3]" started-at="2024-11-27T02:20:15 IST" name="setup" finished-at="2024-11-27T02:20:22 IST" duration-ms="6848" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@70cf32e3]" started-at="2024-11-29T04:17:56 IST" name="setup" finished-at="2024-11-29T04:18:02 IST" duration-ms="6477" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="HillClimbRacing_LauchGameplay()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@70cf32e3]" started-at="2024-11-27T02:20:22 IST" name="HillClimbRacing_LauchGameplay" finished-at="2024-11-27T02:21:18 IST" duration-ms="56530" status="PASS">
+        <test-method signature="HillClimbRacing_LauchGameplay()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@70cf32e3]" started-at="2024-11-29T04:18:02 IST" name="HillClimbRacing_LauchGameplay" finished-at="2024-11-29T04:19:03 IST" duration-ms="61071" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- HillClimbRacing_LauchGameplay -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@70cf32e3]" started-at="2024-11-27T02:21:18 IST" name="tearDown" finished-at="2024-11-27T02:21:18 IST" duration-ms="327" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:sameerakhtar.tests.HillClimbRacingTest@70cf32e3]" started-at="2024-11-29T04:19:03 IST" name="tearDown" finished-at="2024-11-29T04:19:03 IST" duration-ms="338" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
