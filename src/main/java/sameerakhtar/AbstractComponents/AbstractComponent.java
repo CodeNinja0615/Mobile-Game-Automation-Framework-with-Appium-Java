@@ -36,7 +36,7 @@ public class AbstractComponent {
 		this.driver = driver;
 	}
 
-	public void lauchGameWithPackageName(String packageName) {
+	public void launchGameWithPackageName(String packageName) {
 		driver.terminateApp(packageName);
 		driver.activateApp(packageName);
 	}
@@ -49,14 +49,15 @@ public class AbstractComponent {
 		DeviceRotation rotate = new DeviceRotation(0, 0, 90);
 		driver.rotate(rotate);
 	}
-	
+
 	public void copyToClipboard(String text) {
 		driver.setClipboardText(text);
 	}
-	
+
 	public String getClipboardText(String text) {
 		return driver.getClipboardText();
 	}
+
 	public Point VerifyScreenPatternAndGetCoordinates(String imageName, int timeInSeconds) throws Exception {
 		long endTime = System.currentTimeMillis() + (timeInSeconds * 1000L);
 
@@ -93,12 +94,15 @@ public class AbstractComponent {
 			captureScreenshot(imageName, driver);
 			String extractedText = TesseractOCR.extractText(imageName, x, y, width, height);
 			if (extractedText.toLowerCase().equalsIgnoreCase(expectedText.toLowerCase())) {
-				System.out.println(GREEN + "extracted text:- "+extractedText.toLowerCase()+"expected text:- "+expectedText.toLowerCase() + RESET);
-				System.out.println(GREEN + extractedText.toLowerCase().equalsIgnoreCase(expectedText.toLowerCase()) + RESET);
+				System.out.println(GREEN + "extracted text:- " + extractedText.toLowerCase() + "expected text:- "
+						+ expectedText.toLowerCase() + RESET);
+				System.out.println(
+						GREEN + extractedText.toLowerCase().equalsIgnoreCase(expectedText.toLowerCase()) + RESET);
 				return true;
 			}
 //			Thread.sleep(500);
-			System.out.println(RED + "extracted text:- "+extractedText.toLowerCase()+"expected text:- "+expectedText.toLowerCase() + RESET);
+			System.out.println(RED + "extracted text:- " + extractedText.toLowerCase() + "expected text:- "
+					+ expectedText.toLowerCase() + RESET);
 			System.out.println(RED + extractedText.toLowerCase().equalsIgnoreCase(expectedText.toLowerCase()) + RESET);
 		}
 		return false;
@@ -183,11 +187,12 @@ public class AbstractComponent {
 						"percent", scrollPercent, "speed", 500));
 		boolean verifyLookingFor = VerifyScreenPattern(lookingFor, 2);
 		int count = 0;
-		while (!verifyLookingFor && count <= 20) {
+		while (!verifyLookingFor && count <= 20 && !canScrollMore) {
 			canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
 					ImmutableMap.of("left", x, "top", y, "width", width, "height", height, "direction", direction,
 							"percent", scrollPercent, "speed", 500));
 			verifyLookingFor = VerifyScreenPattern(lookingFor, 2);
+			count++;
 		}
 
 	}
@@ -209,7 +214,6 @@ public class AbstractComponent {
 	}
 
 	public void sendKeyboardInput(CharSequence... input) {
-
 		new Actions(driver).pause(500).sendKeys(input).build().perform();
 	}
 }

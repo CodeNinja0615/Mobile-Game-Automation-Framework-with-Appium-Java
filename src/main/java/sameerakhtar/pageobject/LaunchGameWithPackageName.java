@@ -14,11 +14,11 @@ public class LaunchGameWithPackageName extends AbstractComponent {
 	}
 	
 	public HillClimbRacing_MainMenu launchHillClimbRacing(String packageName) {
-		lauchGameWithPackageName(packageName);
+		launchGameWithPackageName(packageName);
 		return new HillClimbRacing_MainMenu(driver);
 	}
 	public ClashOfClans_GamePlay launchClashOfClans(String packageName) {
-		lauchGameWithPackageName(packageName);
+		launchGameWithPackageName(packageName);
 		return new ClashOfClans_GamePlay(driver);
 	}
 }

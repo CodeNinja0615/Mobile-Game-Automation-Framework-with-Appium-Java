@@ -22,7 +22,6 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.windows.WindowsDriver;
-import io.appium.java_client.windows.options.WindowsOptions;
 import sameerakhtar.pageobject.LaunchGameWithPackageName;
 
 public class BaseTest {
@@ -32,16 +31,17 @@ public class BaseTest {
 	public WindowsDriver winDriver;
 	public LaunchGameWithPackageName launchGameWithPackageName;
 
-	public void configureAppium(String deviceName, String platformName, boolean setNoReset)
+	public void configureAppiumMobile(String deviceName, String platformName, boolean setNoReset)
 			throws MalformedURLException, URISyntaxException {
-		String currentUser = System.getProperty("user.name");
-		service = new AppiumServiceBuilder()
-				.withAppiumJS(new File("C://Users//" + currentUser
-						+ "//AppData//Roaming//npm//node_modules//appium//build//lib//main.js"))
-				.withIPAddress("127.0.0.1").usingPort(4723).build();
-		service.start();
+
 		if (platformName.equalsIgnoreCase("Android")) {
 			// ---Android code here
+			String currentUser = System.getProperty("user.name");
+			service = new AppiumServiceBuilder()
+					.withAppiumJS(new File("C://Users//" + currentUser
+							+ "//AppData//Roaming//npm//node_modules//appium//build//lib//main.js"))
+					.withIPAddress("127.0.0.1").usingPort(4723).build();
+			service.start();
 			UiAutomator2Options options = new UiAutomator2Options();
 			options.setDeviceName(deviceName);
 			options.setPlatformName(platformName);
@@ -63,27 +63,6 @@ public class BaseTest {
 		}
 	}
 
-	public void configureAppiumWindows(String deviceName, String platformName, String appToLaunch)
-			throws MalformedURLException, URISyntaxException {
-		String currentUser = System.getProperty("user.name");
-		service = new AppiumServiceBuilder()
-				.withAppiumJS(new File("C://Users//" + currentUser
-						+ "//AppData//Roaming//npm//node_modules//appium//build//lib//main.js"))
-				.withIPAddress("127.0.0.1").usingPort(4723).build();
-		service.start();
-		if (platformName.equalsIgnoreCase("Windows")) {
-			// ---Windows code here
-			WindowsOptions options = new WindowsOptions();
-			options.setCapability("deviceName", deviceName);
-			options.setCapability("platformName", platformName);
-			// ----CMD---- // Get-StartApps
-			options.setCapability("app", appToLaunch);
-			winDriver = new WindowsDriver(new URI("http://127.0.0.1:4723").toURL(), options);
-		} else if (platformName.equalsIgnoreCase("Mac")) {
-			// ---Mac code here
-		}
-	}
-
 	@BeforeMethod
 	public void setup() throws URISyntaxException, IOException {
 		Properties prop = new Properties();
@@ -95,13 +74,10 @@ public class BaseTest {
 		String platformName = System.getProperty("platformName") != null ? System.getProperty("platformName")
 				: prop.getProperty("platformName");
 
-		if (platformName.equalsIgnoreCase("Android") || platformName.equalsIgnoreCase("iOS")) {
-			configureAppium(deviceName, platformName, true);
-			launchGameWithPackageName = new LaunchGameWithPackageName(driver); // ----Providing driver to the first page
-																				// object model class
-		} else if (platformName.equalsIgnoreCase("Windows") || platformName.equalsIgnoreCase("Mac")) {
-			configureAppiumWindows("WindowsPC", "Windows", "Microsoft.GamingApp_8wekyb3d8bbwe!Microsoft.Xbox.App");
-		}
+		configureAppiumMobile(deviceName, platformName, true);
+		launchGameWithPackageName = new LaunchGameWithPackageName(driver); // ----Providing driver to the first page
+																			// object model class
+
 	}
 
 	@AfterMethod
