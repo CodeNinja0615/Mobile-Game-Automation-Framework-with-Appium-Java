@@ -71,6 +71,19 @@ public class AbstractComponent {
 		}
 		return null;
 	}
+	
+	public void clickOnScreenIcon(String imageName, int timeInSeconds) throws Exception {
+		long endTime = System.currentTimeMillis() + (timeInSeconds * 1000L);
+
+		while (System.currentTimeMillis() < endTime) {
+			captureScreenshot(imageName, driver);
+			Point coordinates = ImageVerification.getCoordinatesOfItemOnScreen(imageName);
+			if (coordinates != null) {
+				clickOnScreenWithCoordinates(coordinates.x, coordinates.y);
+			}
+//			Thread.sleep(500);
+		}
+	}
 
 	public boolean VerifyScreenPattern(String imageName, int timeInSeconds) throws Exception {
 		long endTime = System.currentTimeMillis() + (timeInSeconds * 1000L);

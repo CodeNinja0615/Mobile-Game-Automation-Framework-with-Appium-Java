@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="sameerakhtar.tests.ClashOfClansTest">
+      <class name="sameerakhtar.tests.HillClimbRacingTest">
         <methods>
           <include name="tearDown"/>
-          <include name="ClashOfClans_LauchGameplay"/>
+          <include name="HillClimbRacing_LauchGameplay"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- sameerakhtar.tests.ClashOfClansTest -->
+      </class> <!-- sameerakhtar.tests.HillClimbRacingTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
