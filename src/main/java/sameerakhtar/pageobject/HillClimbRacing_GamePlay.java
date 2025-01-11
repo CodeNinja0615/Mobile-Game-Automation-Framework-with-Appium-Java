@@ -40,23 +40,16 @@ public class HillClimbRacing_GamePlay extends AbstractComponent {
 		}
 		// Random pause between actions
 		Thread.sleep(random.nextInt(2000) + 1000); // Pause between 1-3 seconds
-//		Point garPeddle = VerifyScreenPatternAndGetCoordinates("HCR_Gas", 10);
-//		clickAndHoldOnScreenWithCoordinates(garPeddle.x, garPeddle.y, 7);
-//		Point brakePeddle = VerifyScreenPatternAndGetCoordinates("HCR_Gas", 10);
-//		clickAndHoldOnScreenWithCoordinates(brakePeddle.x, brakePeddle.y, 7);
 	}
 
 	public boolean pauseGamePlay() throws Exception {
-		Point startBtn = VerifyScreenPatternAndGetCoordinates("HCR_PauseBtn", 10);
-		clickOnScreenWithCoordinates(startBtn.x, startBtn.y);
+		clickOnScreenIcon("HCR_PauseBtn", 20);
 		return VerifyScreenPattern("HCR_GamePlayPaused", 25);
 	}
 
 	public boolean quitGamePlay() throws Exception {
-		Point exitBtn = VerifyScreenPatternAndGetCoordinates("HCR_ExitBtn", 10);
-		clickOnScreenWithCoordinates(exitBtn.x, exitBtn.y);
-		Point okBtn = VerifyScreenPatternAndGetCoordinates("HCR_ExitOKBtn", 10);
-		clickOnScreenWithCoordinates(okBtn.x, okBtn.y);
+		clickOnScreenIcon("HCR_ExitBtn", 20);
+		clickOnScreenIcon("HCR_ExitOKBtn", 20);
 		return VerifyScreenPattern("HCR_MainMenu", 35);
 	}
 

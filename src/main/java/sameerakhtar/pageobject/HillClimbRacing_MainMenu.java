@@ -26,21 +26,20 @@ public class HillClimbRacing_MainMenu extends AbstractComponent {
 	}
 	
 	public boolean naviagteToGameSettings() throws Exception {
-		Point settings = VerifyScreenPatternAndGetCoordinates("HCR_SettingIcon", 20);
-		clickOnScreenWithCoordinates(settings.x, settings.y);
+//		Point settings = VerifyScreenPatternAndGetCoordinates("HCR_SettingIcon", 20);
+//		clickOnScreenWithCoordinates(settings.x, settings.y);
+		clickOnScreenIcon("HCR_SettingIcon", 20);
 		Boolean verifySettings = VerifyScreenPattern("HCR_Settings", 20);
 		return verifySettings;
 	}
 	
 	public boolean gotoMainMenu() throws Exception {
-		Point cross = VerifyScreenPatternAndGetCoordinates("HCR_SettingCross", 20);
-		clickOnScreenWithCoordinates(cross.x, cross.y);
+		clickOnScreenIcon("HCR_SettingCross", 20);
 		return VerifyScreenPattern("HCR_MainMenu", 20);
 	}
 	
 	public HillClimbRacing_GamePlay navigateToGamePLay() throws Exception {
-		Point startBtn = VerifyScreenPatternAndGetCoordinates("HCR_StartBtn", 10);
-		clickOnScreenWithCoordinates(startBtn.x, startBtn.y);
+		clickOnScreenIcon("HCR_StartBtn", 20);
 		return new HillClimbRacing_GamePlay(driver);
 	}
 }

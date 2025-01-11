@@ -19,24 +19,20 @@ public class ClashOfClans_MyProfile extends AbstractComponent{
 	}
 
 	public boolean gotoSocialSection() throws Exception {
-		Point social = VerifyScreenPatternAndGetCoordinates("COC_SocialSection", 30);
-		clickOnScreenWithCoordinates(social.x, social.y);
+		clickOnScreenIcon("COC_SocialSection", 20);
 		return VerifyScreenPattern("COC_Social", 30);
 	}
 	
 	public boolean searchPlayers() throws Exception {
-		Point searchPlayers = VerifyScreenPatternAndGetCoordinates("COC_SearchPlayers", 30);
-		clickOnScreenWithCoordinates(searchPlayers.x, searchPlayers.y);
-		Point searchPlayerID = VerifyScreenPatternAndGetCoordinates("COC_SearchPlayerID", 30);
-		clickOnScreenWithCoordinates(searchPlayerID.x, searchPlayerID.y);
+		clickOnScreenIcon("COC_SearchPlayers", 20);
+		clickOnScreenIcon("COC_SearchPlayerID", 20);
 		sendKeyboardInput("Y2QCPVGC8", Keys.ENTER);
 //		return verifyOnScreenText("Y2QCPVGC8", 376, 214, 117, 22, 30);
 		return VerifyScreenPattern("COC_SearchedProfle", 30);
 	}
 	
 	public boolean cutProfileWindow() throws Exception {
-		Point crossProfile = VerifyScreenPatternAndGetCoordinates("COC_Cross", 30);
-		clickOnScreenWithCoordinates(crossProfile.x, crossProfile.y);
+		clickOnScreenIcon("COC_Cross", 20);
 		return VerifyScreenPattern("COC_GamePlay", 30);
 	}
 	

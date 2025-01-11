@@ -20,14 +20,12 @@ public class ClashOfClans_GamePlay extends AbstractComponent{
 		zoomInAreaWithCoordinates(500, 200, 300, 200, 1.0);
 		swipeInDirectionInAreaWithCoordinates(500, 200, 300, 200, "left", 0.50);
 		zoomOutAreaWithCoordinates(500, 200, 300, 200, 0.50);
-		Point profile = VerifyScreenPatternAndGetCoordinates("COC_ProfileIcon", 25);
-		clickOnScreenWithCoordinates(profile.x, profile.y);
+		clickOnScreenIcon("COC_ProfileIcon", 20);
 		return new ClashOfClans_MyProfile(driver);
 	}
 	
 	public ClashOfClans_Settings gotoSettings() throws Exception {
-		Point settings = VerifyScreenPatternAndGetCoordinates("COC_Settings", 25);
-		clickOnScreenWithCoordinates(settings.x, settings.y);
+		clickOnScreenIcon("COC_Settings", 20);
 		return new ClashOfClans_Settings(driver);
 	}
 	

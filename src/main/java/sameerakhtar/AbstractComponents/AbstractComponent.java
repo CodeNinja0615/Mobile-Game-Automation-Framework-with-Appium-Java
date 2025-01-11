@@ -80,6 +80,7 @@ public class AbstractComponent {
 			Point coordinates = ImageVerification.getCoordinatesOfItemOnScreen(imageName);
 			if (coordinates != null) {
 				clickOnScreenWithCoordinates(coordinates.x, coordinates.y);
+				break;
 			}
 //			Thread.sleep(500);
 		}
