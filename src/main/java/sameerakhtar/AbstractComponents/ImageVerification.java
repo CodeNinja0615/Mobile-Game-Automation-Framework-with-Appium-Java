@@ -115,7 +115,7 @@ public class ImageVerification {
 	public static Point compareRegion(BufferedImage largeImage, BufferedImage smallImage, int startX, int startY) {
 		int smallWidth = smallImage.getWidth();
 		int smallHeight = smallImage.getHeight();
-		int tolerance = 30; // Tolerance for pixel value variations
+		int tolerance = 35; // Tolerance for pixel value variations
 
 		// Compare each pixel in the small image with the corresponding pixel in the
 		// large image

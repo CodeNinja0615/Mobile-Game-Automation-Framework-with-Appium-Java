@@ -3,6 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
+      <class name="sameerakhtar.tests.ClashOfClansTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="ClashOfClans_LauchGameplay"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- sameerakhtar.tests.ClashOfClansTest -->
       <class name="sameerakhtar.tests.HillClimbRacingTest">
         <methods>
           <include name="tearDown"/>

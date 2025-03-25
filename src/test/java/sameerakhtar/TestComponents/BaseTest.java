@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -35,12 +37,24 @@ public class BaseTest {
 			throws MalformedURLException, URISyntaxException {
 
 		if (platformName.equalsIgnoreCase("Android")) {
-			// ---Android code here
-			String currentUser = System.getProperty("user.name");
-			service = new AppiumServiceBuilder()
-					.withAppiumJS(new File("C://Users//" + currentUser
-							+ "//AppData//Roaming//npm//node_modules//appium//build//lib//main.js"))
+			// ---node execution for Windows Machine here
+//			String currentUser = System.getProperty("user.name");
+//			service = new AppiumServiceBuilder()
+//					.withAppiumJS(new File("C://Users//" + currentUser
+//							+ "//AppData//Roaming//npm//node_modules//appium//build//lib//main.js"))
+//					.withIPAddress("127.0.0.1").usingPort(4723).build();
+
+			// ---node execution for MAC Machine here
+			// Define environment variables for Appium 
+			Map<String, String> env = new HashMap<>(System.getenv());
+			env.put("ANDROID_HOME", "/Users/sameerakhtar/Library/Android/sdk");
+			env.put("ANDROID_SDK_ROOT", "/Users/sameerakhtar/Library/Android/sdk");
+
+			service = new AppiumServiceBuilder().usingDriverExecutable(new File("/opt/homebrew/opt/node@22/bin/node")) // Explicit Node.js path
+					.withAppiumJS(new File("/opt/homebrew/lib/node_modules/appium/build/lib/main.js")) // Appium path
+					.withEnvironment(env) // ✅ Pass environment variables explicitly
 					.withIPAddress("127.0.0.1").usingPort(4723).build();
+
 			service.start();
 			UiAutomator2Options options = new UiAutomator2Options();
 			options.setDeviceName(deviceName);
