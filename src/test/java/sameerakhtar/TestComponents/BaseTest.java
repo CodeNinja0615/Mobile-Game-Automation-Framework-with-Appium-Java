@@ -61,7 +61,8 @@ public class BaseTest {
 			options.setPlatformName(platformName);
 			// -----------------------------------------------------------------------------------------------------------------------//
 //			options.setApp("C:/Users/HP/Downloads/General-Store.apk");
-//			adb shell dumpsys window | findstr "mCurrentFocus"
+//			adb shell dumpsys window | findstr "mCurrentFocus" --WIN
+//			adb shell dumpsys window | grep "mCurrentFocus"  --MAC
 //			options.setAppActivity("com.instagram.barcelona.mainactivity.BarcelonaActivity");
 //			options.setAppPackage("com.instagram.barcelona");
 			// -----------------------------------------------------------------------------------------------------------------------//
@@ -89,9 +90,7 @@ public class BaseTest {
 				: prop.getProperty("platformName");
 
 		configureAppiumMobile(deviceName, platformName, true);
-		launchGameWithPackageName = new LaunchGameWithPackageName(driver); // ----Providing driver to the first page
-																			// object model class
-
+		launchGameWithPackageName = new LaunchGameWithPackageName(driver); // ----Providing driver to the first page object model class
 	}
 
 	@AfterMethod
