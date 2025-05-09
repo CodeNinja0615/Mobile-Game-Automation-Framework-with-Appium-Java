@@ -3,7 +3,7 @@ package sameerakhtar.pageobject;
 import java.awt.Point;
 
 import io.appium.java_client.android.AndroidDriver;
-import sameerakhtar.AbstractComponents.AbstractComponent;
+import sameerakhtar.utils.AbstractComponent;
 
 public class ClashOfClans_Settings extends AbstractComponent{
 	AndroidDriver driver;

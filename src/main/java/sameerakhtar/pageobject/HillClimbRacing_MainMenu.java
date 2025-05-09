@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import sameerakhtar.AbstractComponents.AbstractComponent;
+import sameerakhtar.utils.AbstractComponent;
 
 public class HillClimbRacing_MainMenu extends AbstractComponent {
 

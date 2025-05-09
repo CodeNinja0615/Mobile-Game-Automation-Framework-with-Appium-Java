@@ -1,4 +1,4 @@
-package sameerakhtar.AbstractComponents;
+package sameerakhtar.utils;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;

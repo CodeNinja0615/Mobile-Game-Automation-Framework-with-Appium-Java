@@ -2,7 +2,7 @@ package sameerakhtar.pageobject;
 
 import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.android.AndroidDriver;
-import sameerakhtar.AbstractComponents.AbstractComponent;
+import sameerakhtar.utils.AbstractComponent;
 
 public class LaunchGameWithPackageName extends AbstractComponent {
 
